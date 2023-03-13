@@ -37,7 +37,7 @@ Upload the data to an S3 bucket through the AWS Gateway so that SageMaker has ac
      - epochs : (6,8)
      - lr : (0.001,0.1)
 - Hyperparameters from best model with least loss are used for training the Resnet50 model "epochs": 7, "batch-size": 128, "lr": 0.0011326071316402377
-
+## Hypertuning Main Job
 ![Hypertuning Main Job ](images/hyperparametertuningjob.png "Hypertuning Main Job")
 ![Completed Hypertuning Training Jobs](images/hyperparametertuningjob2.png.png "Completed Hypertuning Training Jobs")
 ![Best model metric from Hypertuning Jobs](images/hyperparametertuningjob-best.png "Best model metric from Hypertuning Jobs")
