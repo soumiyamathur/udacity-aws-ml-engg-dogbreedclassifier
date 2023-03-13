@@ -98,8 +98,8 @@ The profiler report can be found [here](ProfilerReport/profiler-report.html).
 ### Inference Result
 
 - From Validation Set:
-    Model identified the label for Basenji dog breed correctly.
-    Label 11 (Beagle) was identified incorrectly as label 7 (American Foxhound).
-    Label 31 (Borzoi) was identified incorrectly as label 94 (Komondor)
+    1. Model identified the label for Basenji dog breed correctly.
+    2. Label 11 (Beagle) was identified incorrectly as label 7 (American Foxhound).
+    3. Label 31 (Borzoi) was identified incorrectly as label 94 (Komondor)
 - From Test Set:
-    Model identified the label 39 for Bull Terrier dog breed correctly.
+    1. Model identified the label 39 for Bull Terrier dog breed correctly.
