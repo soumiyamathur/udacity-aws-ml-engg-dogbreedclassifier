@@ -50,7 +50,7 @@ Upload the data to an S3 bucket through the AWS Gateway so that SageMaker has ac
 
 ## Completed Hypertuning Training Jobs
 
-![Completed Hypertuning Training Jobs](images/hyperparametertuningjob2.png.png "Completed Hypertuning Training Jobs")
+![Completed Hypertuning Training Jobs](images/hyperparametertuningjob2.png "Completed Hypertuning Training Jobs")
 
 ## Best model metric from Hypertuning Jobs
 
