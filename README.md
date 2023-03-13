@@ -94,7 +94,7 @@ The profiler report can be found [here](ProfilerReport/profiler-report.html).
 
 ## Model Deployment
 
-- Model was deployed to a "ml.m5.large" instance type and "endpoint_inference.py" script is used to setup and deploy our working endpoint.
+- Model was deployed to a "ml.m5.xlarge" instance type and "endpoint_inference.py" script is used to setup and deploy our working endpoint.
 - For testing purposes few test images are stored in the "images" folder.
 - image are fed to the endpoint for inference.
 
