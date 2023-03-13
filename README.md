@@ -66,34 +66,40 @@ Upload the data to an S3 bucket through the AWS Gateway so that SageMaker has ac
 
 ## Debugging and Profiling
 
-**TODO**: Give an overview of how you performed model debugging and profiling in Sagemaker
+### Profiling Config
+- SageMaker Debugger collects system and framework profiling information of training jobs and identify performance bottlenecks.
+- Configuration for collecting system and framework metrics of SageMaker training jobs can be set with ProfilerConfig class. 
+- For the training job, following Profiler config is used
+    1. System monitoring was set to 500 millis
+    2. The number of steps to profile set to 10
 
-
-### Debugger Output
-
-The Graphical representation of the Cross Entropy Loss.
-![Cross Entropy Loss](images/tensor_plot.png "Cross Entropy Loss")
-
-
-### Profiler Output
+### Profiler Output/Result
 
 The profiler report can be found [here](ProfilerReport/profiler-report.html).
+- During the training job, the Dataloader rule was the most frequently triggered. It processed 11 datapoints and was triggered 1 times. 
 
-### Results
 
-**TODO**: What are the results/insights did you get by profiling/debugging your model?
+### Debugging Hook Config
+- Configuration information for the Amazon SageMaker Debugger output
+- include_regex:CrossEntropyLoss_output_0- It determines if the training or validation loss is decreasing and raises an issue if the loss has not decreased by a certain percentage in the last few iterations.
 
-**TODO** Remember to provide the profiler html/pdf file in your submission.
+### Debugger Output/Result
+#### The Graphical representation of the Cross Entropy Loss.
 
+![Cross Entropy Loss](images/tensor_plot.png "Cross Entropy Loss")
+
+#### The Graphical representation issue reported due to no loss in epochs.
+
+![Cross Entropy Loss](images/Issue-Lossnotdecreasing.png "Issue Reported- Loss not decreasing")
 
 ## Model Deployment
 
 - Model was deployed to a "ml.m5.large" instance type and "endpoint_inference.py" script is used to setup and deploy our working endpoint.
 - For testing purposes few test images are stored in the "images" folder.
 - image are fed to the endpoint for inference.
+
 ### Model Endpoint
 ![End Point Deployment](images/model_endpoint.png "End Point")
-
 
 ### Inference Result
 
