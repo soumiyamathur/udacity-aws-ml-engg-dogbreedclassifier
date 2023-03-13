@@ -14,17 +14,43 @@ The project is designed to be dataset independent so if there is a dataset that 
 ### Access
 Upload the data to an S3 bucket through the AWS Gateway so that SageMaker has access to the data. 
 
-## Hyperparameter Tuning
-What kind of model did you choose for this experiment and why? Give an overview of the types of parameters and their ranges used for the hyperparameter search
+## Code Files
+- `train_and_deploy.ipynb` 
+    1. Steps to upload dog images to S3 bucket
+    2. Running training job with hyperparameters and get best model from hyperparameter training
+    3. Train the bestperformance model, test it and make sagemaker profiling & debugger
+    4. Deploy the model to "ml.m5.xlarge" instance and make an inference.
+    5. Delete the endpoint after testing.
 
-Remember that your README should:
-- Include a screenshot of completed training jobs
-- Logs metrics during the training process
-- Tune at least two hyperparameters
-- Retrieve the best best hyperparameters from all your training jobs
+- `hpo.py` This is the python script using to train and test all models in tuning hyperparameters step.
+
+- `train.py` This is the python script using to train the best performance model and test it.
+
+- `inference` This script we use it to deploy the model on AWS and make prediction.
+
+## Hyperparameter Tuning
+
+- The Resnet50 used to learn the data because it is trained on a lot of data and it's concolution can get the general feature 
+- One fully connected layer is used on top of resnet50 to predict 133 number of dog breed
+- Batch- size, Epochs, and Learning rate are used to search for the best model in  the tunning hyperparameters step
+     - batch size : [32,64,128,256,512]
+     - epochs : (6,8)
+     - lr : (0.001,0.1)
+- Hyperparameters from best model with least loss are used for training the Resnet50 model "epochs": 7, "batch-size": 128, "lr": 0.0011326071316402377
+
+![Hypertuning Main Job ](images/hyperparametertuningjob.png "Hypertuning Main Job")
+![Completed Hypertuning Training Jobs](images/hyperparametertuningjob2.png.png "Completed Hypertuning Training Jobs")
+![Best model metric from Hypertuning Jobs](images/hyperparametertuningjob-best.png "Best model metric from Hypertuning Jobs")
+![Training Job with selected Hyperparameters](images/trainingjobwithhyperparams.png "Training Job with selected Hyperparameters")
+![Log for Training Job with selected Hyperparameters](images/trainingjobwithhyperparamsLog.png "Log for Training Job with selected Hyperparameters")
 
 ## Debugging and Profiling
 **TODO**: Give an overview of how you performed model debugging and profiling in Sagemaker
+### Debugger Output
+The Graphical representation of the Cross Entropy Loss.
+![Cross Entropy Loss](images/tensor_plot.png "Cross Entropy Loss")
+### Profiler Output
+The profiler report can be found [here](ProfilerReport/profiler-report.html).
 
 ### Results
 **TODO**: What are the results/insights did you get by profiling/debugging your model?
@@ -36,6 +62,10 @@ Remember that your README should:
 **TODO**: Give an overview of the deployed model and instructions on how to query the endpoint with a sample input.
 
 **TODO** Remember to provide a screenshot of the deployed active endpoint in Sagemaker.
+- Model was deployed to a "ml.m5.large" instance type and "endpoint_inference.py" script is used to setup and deploy our working endpoint.
+- For testing purposes ,one test images are stored in the "images" folder.
+- image are fed to the endpoint for inference.
+### Model Endpoint
+![End Point Deployment](images/model_endpoint.png "End Point")
 
-## Standout Suggestions
-**TODO (Optional):** This is where you can provide information about any standout suggestions that you have attempted.
+
